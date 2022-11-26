@@ -35,7 +35,7 @@ jobs:
         virtualenvs-in-project: true # optional, default is false
     - name: Install dependencies
       run: |
-        poetry install -ono-root
+        poetry install --no-root
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
