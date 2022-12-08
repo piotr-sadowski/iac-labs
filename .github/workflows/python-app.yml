@@ -24,6 +24,7 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
+        shell: bash
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -36,7 +37,7 @@ jobs:
         version: latest # default is latest
         virtualenvs-create: true # optional, default is true
         virtualenvs-in-project: true # optional, default is false
-#        installer-parallel: true
+        installer-parallel: true
     - name: Install dependencies
       run: |
         poetry install --no-root
