@@ -21,10 +21,12 @@ jobs:
       matrix:
         os: [ "ubuntu-latest", "windows-latest" ]
     runs-on: ${{ matrix.os }}
+    
     defaults:
       run:
         working-directory: ./example-app
         shell: bash
+        
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -77,6 +79,7 @@ jobs:
     - name: Lint with flake8
       run: |
         source $VENV poetry run task lint
+        shell: bash
         
   formatter:
     strategy:
@@ -89,7 +92,6 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-        shell: bash
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -107,6 +109,7 @@ jobs:
     - name: Formatter with formatter
       run: |
         source $VENV poetry run task formatter
+        shell: bash
         
   security:
     strategy:
@@ -119,7 +122,6 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-        shell: bash
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -137,6 +139,7 @@ jobs:
     - name: Security with bandit
       run: |
         source $VENV poetry run task security
+        shell: bash
         
   unittests:
     strategy:
@@ -147,7 +150,6 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-        shell: bash
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -165,3 +167,4 @@ jobs:
     - name: Test with pytest
       run: |
         source $VENV poetry run task test
+        shell: bash
