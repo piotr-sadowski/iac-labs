@@ -25,7 +25,6 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-        shell: bash
         
     steps:
     - uses: actions/checkout@v3
@@ -43,6 +42,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
+      shell: bash
     - name: Cache build venv
       id: cached-poetry-dependencies
       uses: actions/cache@v3
@@ -61,7 +61,7 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-        shell: bash
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -79,7 +79,7 @@ jobs:
     - name: Lint with flake8
       run: |
         source $VENV poetry run task lint
-        shell: bash
+      shell: bash
         
   formatter:
     strategy:
@@ -109,7 +109,7 @@ jobs:
     - name: Formatter with formatter
       run: |
         source $VENV poetry run task formatter
-        shell: bash
+      shell: bash
         
   security:
     strategy:
@@ -139,7 +139,7 @@ jobs:
     - name: Security with bandit
       run: |
         source $VENV poetry run task security
-        shell: bash
+      shell: bash
         
   unittests:
     strategy:
@@ -167,4 +167,4 @@ jobs:
     - name: Test with pytest
       run: |
         source $VENV poetry run task test
-        shell: bash
+      shell: bash
